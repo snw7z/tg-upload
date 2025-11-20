@@ -692,7 +692,9 @@ with client:
           print(f"\nAn error occured!\n{error_code}")
       elif Path(args.path).is_dir():
         print("discovering paths...")
-        for _path in Path(args.path).glob("**/*") if args.recursive else Path(args.path).glob("*"):
+        paths = list(Path(args.path).glob("**/*")) if args.recursive else list(Path(args.path).glob("*"))
+        paths.sort()
+        for _path in paths:
           filename = PurePath(_path).name
           if Path(_path).is_file():
             try:
@@ -736,7 +738,9 @@ with client:
           print(f"\nAn error occured!\n{error_code}")
       elif Path(args.path).is_dir():
         print("discovering paths...")
-        for _path in Path(args.path).glob("**/*") if args.recursive else Path(args.path).glob("*"):
+        paths = list(Path(args.path).glob("**/*")) if args.recursive else list(Path(args.path).glob("*"))
+        paths.sort()
+        for _path in paths:
           if Path(_path).is_file():
             try:
               filename = PurePath(_path).name
@@ -788,7 +792,9 @@ with client:
           print(f"\nAn error occured!\n{error_code}")
       elif Path(args.path).is_dir():
         print("discovering paths...")
-        for _path in Path(args.path).glob("**/*") if args.recursive else Path(args.path).glob("*"):
+        paths = list(Path(args.path).glob("**/*")) if args.recursive else list(Path(args.path).glob("*"))
+        paths.sort()
+        for _path in paths:
           if Path(_path).is_file():
             try:
               filename = PurePath(_path).name
@@ -876,7 +882,9 @@ with client:
           print(f"\nAn error occured!\n{error_code}")
       elif Path(args.path).is_dir():
         print("discovering paths...")
-        for _path in Path(args.path).glob("**/*") if args.recursive else Path(args.path).glob("*"):
+        paths = list(Path(args.path).glob("**/*")) if args.recursive else list(Path(args.path).glob("*"))
+        paths.sort()
+        for _path in paths:
           if Path(_path).is_file():
             try:
               filename = PurePath(_path).name
@@ -940,7 +948,9 @@ with client:
           print(f"\nAn error occured!\n{error_code}")
       elif Path(args.path).is_dir():
         print("discovering paths...")
-        for _path in Path(args.path).glob("**/*") if args.recursive else Path(args.path).glob("*"):
+        paths = list(Path(args.path).glob("**/*")) if args.recursive else list(Path(args.path).glob("*"))
+        paths.sort()
+        for _path in paths:
           if Path(_path).is_file():
             try:
               filename = PurePath(_path).name
@@ -958,6 +968,7 @@ with client:
                 file_size, file_sha256, file_md5, creation_time, modification_time = file_info(_path, caption)
                 start_time = time()
 
+                # Lógica de geração de thumbnail automática para send_document (vídeos)
                 thumb_path = args.thumb
                 if args.thumb == 'auto' and PurePath(_path).suffix in ['.mp4', '.mkv', '.avi', '.mov', '.wmv', '.flv', '.webm']:
                   with VideoFileClip(str(_path)) as video:
