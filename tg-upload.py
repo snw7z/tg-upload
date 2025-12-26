@@ -14,7 +14,6 @@ from math import floor
 import argparse
 import hashlib
 
-# === NEW FUNCTION ADDED ===
 def shorten_filename(filename, limit=60):
     stem = PurePath(filename).stem
     suffix = PurePath(filename).suffix
@@ -994,3 +993,4 @@ with client:
             print(f"[Dir] -> {PurePath(_path).name}")
       else:
         print("Error: Given path is invalid.")
+
